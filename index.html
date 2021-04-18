@@ -36,13 +36,13 @@
   <button id="btnLogOut" onclick="logOut()">Log Out</button>
   <button id="btnClose" onclick="closed()">Close</button>
 
-  <!-- <script src="js/vconsole.min.js"></script> -->
-  <!-- <script>
+  <<script src="js/vconsole.min.js"></script> -->
+  <<script>
     var vConsole = new VConsole()
     console.log("Hello World!")
   </script> -->
 
-  <!-- <script src="https://static.line-scdn.net/liff/edge/versions/2.8.1/sdk.js"></script> -->
+  <script src="https://static.line-scdn.net/liff/edge/versions/2.8.1/sdk.js"></script> -->
   <script>
     function createUniversalLink() {
     }
@@ -75,12 +75,23 @@
     }
 
     function getEnvironment() {
+      document.getElemetById("os").append(liff.getOS())
+      document.getElemetById("language").append(liff.getLanguage())
+      document.getElemetById("version").append(liff.getVersion())
+      document.getElemetById("accessToken").append(liff.getAccessToken())
+      document.getElemetById("isInClient").append(liff.getisInClient())
+      if (liff.isInClient()) {
+        document.getElemetById("btnLogOut").style.display = "none"
+      } else {
+        document.getElemetById("btnMsg").style.display = "none"
+        document.getElemetById("btnScanCode").style.display = "none"
+        document.getElemetById("btnClose").style.display = "none"        
+      }
     }
 
     async function main() {
-      alert("LINE Developers x Skooldio")
-      await liff.init({ liffId: "YOUR-LIFF-ID" })
-      // getEnvironment()
+      await liff.init({ liffId: "1655372449-M4nPD0oa" })
+      getEnvironment()
       // getUserProfile()
       // getContext()
       // getFriendship()
